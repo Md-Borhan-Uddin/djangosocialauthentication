@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            
+            <div class="col-md-3 side-bar">
+                
+            </div>
+            <div class="col-md-9">
+                <div class="row">
+                    <h1 class="text-center mb-5">Workspace List</h1>
+                    {% for workspace in workspaces %}
+                        <div class="col-md-4">
+
+                            <div class="card">
+                                <div class="card-body">
+                                    <h3>{{workspace.name}}</h3>
+                                    <p>{{workspace.content}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+{% endblock content %}
