@@ -26,7 +26,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
     'loginapp.apps.LoginappConfig',
+    #all-auth
+    'django.contrib.sites',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    #social account provider
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.facebook',
+    #custom app
+    
 ]
 
 MIDDLEWARE = [
@@ -41,6 +53,8 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'demo.urls'
 
+CRISPY_TEMPLATE_PACK ='bootstrap4'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -52,10 +66,38 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request',
             ],
         },
     },
 ]
+
+
+AUTHENTICATION_BACKENDS = [
+    
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+    #client_id=1010195965991-77ifqsn8d12gjlacia6jnn74bf6e9sff.apps.googleusercontent.com
+
+    #client_secret=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
+]
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
+
+SITE_ID = 1
 
 WSGI_APPLICATION = 'demo.wsgi.application'
 

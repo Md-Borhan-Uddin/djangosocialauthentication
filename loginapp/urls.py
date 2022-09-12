@@ -3,5 +3,6 @@ from loginapp import views
 
 
 urlpatterns = [
-   path('', views.TemplateView.as_view()),
+   path('', views.HomeTemplateView.as_view()),
+   # path('login', views.LoginView.as_view()),
 ]
